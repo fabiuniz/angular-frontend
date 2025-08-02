@@ -1,0 +1,44 @@
+# Define a versão do arquivo Docker Compose.
+version: '3'
+
+# Seção que define os serviços (contêineres) da nossa aplicação.
+services:
+  backend-java:
+    # Indica ao Docker Compose para construir o contêiner a partir do Dockerfile.
+    build:
+      context: ./java-app
+      dockerfile: Dockerfile
+    # Define um nome para o contêiner.
+    container_name: backend-java
+    # Mapeia a porta 8080 da máquina host para a porta 8080 do contêiner.
+    ports:
+      - "8080:8080"
+    # Variáveis de ambiente (opcional)
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    # Conecta o serviço à rede definida.
+    networks:
+      - mynetwork
+
+  frontend-angular:
+    # Constrói o contêiner a partir do Dockerfile na pasta 'angular-app'.
+    build:
+      context: ./angular-app
+      dockerfile: Dockerfile
+    # Define o nome do contêiner.
+    container_name: frontend-angular
+    # Mapeia a porta 4200 da máquina host para a porta 80 do contêiner.
+    ports:
+      - "4200:80"
+    # Garante que o backend-java seja iniciado antes do frontend.
+    depends_on:
+      - backend-java
+    # Conecta o serviço à mesma rede que o backend.
+    networks:
+      - mynetwork
+
+# Seção que define as redes usadas pelos serviços.
+networks:
+  mynetwork:
+    # Define o driver da rede como 'bridge'.
+    driver: bridge

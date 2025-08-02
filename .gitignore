@@ -1,0 +1,53 @@
+# Ignorar arquivos do frontend Angular
+# ==================================
+
+# Ignora a pasta 'node_modules', que contém as dependências do npm.
+# Essa pasta é gerada localmente e não deve ser versionada.
+/angular-app/node_modules/
+
+# Ignora a pasta 'dist', que contém os arquivos compilados (o build) da aplicação.
+# O Docker se encarrega de gerar essa pasta, então não é necessário no Git.
+/angular-app/dist/
+
+# Ignora caches e arquivos temporários do Angular CLI.
+/angular-app/.angular/cache/
+
+# Ignora arquivos de debug e logs.
+/angular-app/*.log
+/angular-app/npm-debug.log*
+
+# Ignorar arquivos do backend Java
+# ==================================
+
+# Ignora a pasta 'target', que contém os arquivos compilados do Maven.
+# O JAR e as classes geradas são criados pelo Docker e não precisam ser versionados.
+/java-app/target/
+
+# Ignora arquivos de IDEs (IntelliJ, VS Code, Eclipse, etc.)
+# ==================================
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Visual Studio Code
+.vscode/
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Ignorar arquivos de sistema e de configuração pessoal
+# ==================================
+
+# Ignora arquivos de sistema do macOS.
+.DS_Store
+
+# Ignora arquivos de configuração da SFTP.
+sftp-config.json
+
+# Ignora arquivos de scripts de ambiente
+setup-docker*.sh
