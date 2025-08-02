@@ -33,7 +33,7 @@ COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder /app/dist/frontend-angular/ /usr/share/nginx/html/
 
 # Expõe a porta 80 do contêiner.
-EXPOSE 80
+EXPOSE 8081
 
 # Comando para iniciar o Nginx.
 CMD ["nginx", "-g", "daemon off;"]

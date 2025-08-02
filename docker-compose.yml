@@ -30,6 +30,7 @@ services:
     # Mapeia a porta 4200 da máquina host para a porta 80 do contêiner.
     ports:
       - "4200:80"
+      - "8081:80"
     # Garante que o backend-java seja iniciado antes do frontend.
     depends_on:
       - backend-java
